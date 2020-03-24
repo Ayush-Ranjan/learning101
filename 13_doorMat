@@ -1,0 +1,11 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+if __name__=='__main__':
+    n,m=input().split()
+    ch='.|.'
+    for x in range(int(n,10)//2):
+        print((ch*(2*x+1)).center(int(m,10),'-'))
+    print('WELCOME'.center(int(m,10),'-'))
+    for x in range(int(n,10)//2,0,-1):
+        print((ch*(2*x-1)).center(int(m,10),'-'))
+            
+

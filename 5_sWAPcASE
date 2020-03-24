@@ -1,0 +1,15 @@
+def swap_case(s):
+    length=len(s)
+    r=''
+    for x in range(length):
+        c=s[x]
+        if(ord(c)>=65 and ord(c)<=90):
+            c=chr(ord(c)+32)
+        elif(ord(c)>=97 and ord(c)<=122):
+            c=chr(ord(c)-32)
+        r=r+c    
+    return r
+if __name__ == '__main__':
+    s = input()
+    result = swap_case(s)
+    print(result)
