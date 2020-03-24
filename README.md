@@ -1,2 +1,3 @@
-This repo has cpp files and python files in their respective folders.
+This repo has cpp files in its folder. Python files are not in folder
+
 I have created a new branch.
