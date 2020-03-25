@@ -1,0 +1,16 @@
+def merge_the_tools(string, k):
+    # your code goes here
+    n= int(len(string)/k)
+    for i in range(n):
+        l = string[i * k : (i + 1) * k]
+        s=""
+        for c in l:
+            if c not in s:
+                s=s+c
+        print(s)
+
+
+
+if __name__ == '__main__':
+    string, k = input(), int(input())
+    merge_the_tools(string, k)
