@@ -2,7 +2,6 @@ import rospy
 from geometry_msgs.msg import Twist
 
 def move_circle():
-(
     # Create a publisher which can "talk" to Turtlesim and tell it to move
     pub = rospy.Publisher('turtle1/cmd_vel', Twist, queue_size=10)
     vel_msg=Twist() 
