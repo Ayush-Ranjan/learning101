@@ -44,8 +44,8 @@ def move():
         #Force the robot to stop
         velocity_publisher.publish(vel_msg)
    
-  if __name__ == '__main__':
-       try:
-           #Testing our function
-           move()
-        except rospy.ROSInterruptException: pass
+if __name__ == '__main__':
+    try:
+    #Testing our function
+        move()
+    except rospy.ROSInterruptException: pass
