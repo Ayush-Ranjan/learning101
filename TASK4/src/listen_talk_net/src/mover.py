@@ -15,9 +15,10 @@ def move():
     max_HSV = np.array([33, 255, 255], dtype = "uint8")    
     lower_blue = np.array([110,50,50])
     upper_blue = np.array([130,255,255])
-    t1=0
+    t1=rospy.Time.now().to_sec()
     speed=1
     distance=1
+    flag=True
     while(True):
         # Capture frame-by-frame
         ret, frame = cap.read()
@@ -30,10 +31,9 @@ def move():
         mask = cv2.inRange(imageHSV, lower_blue, upper_blue)
         #skinRegionHSV = cv2.inRange(imageHSV, min_HSV, max_HSV)
         blueHSV = cv2.bitwise_and(frame, frame, mask = mask)    
-        if(t1==0):
+        if(flag):
             _,cntsp,_ = cv2.findContours(mask, cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE) 
-            _,cnts,_ = cv2.findContours(mask, cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
-            t1=1
+            flag=False
         elif((t0-t1)<1):
             _,cnts,_ = cv2.findContours(mask, cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
         else:
@@ -69,13 +69,12 @@ def move():
                     print("up")
                     vel_msg.linear.y = abs(speed)
             time=0        
-            while not rospy.is_shutdown():
                 #Loop to move the turtle in an specified distance
-                while(time < 1):
+            while(time < 1):
                 #Publish the velocity
-                    velocity_publisher.publish(vel_msg)
+                velocity_publisher.publish(vel_msg)
                 #Takes actual time to velocity calculus
-                    time=rospy.Time.now().to_sec()
+                time=rospy.Time.now().to_sec()
                 #Calculates distancePoseStamped
             #After the loop, stops the robot
             vel_msg.linear.x = 0
